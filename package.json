@@ -1,0 +1,24 @@
+{
+  "name": "team-portfolio-generator",
+  "version": "1.0.0",
+  "description": "A team portfoloi generator that will pop up on a webpage",
+  "main": "index.js",
+  "dependencies": {
+    "inquirer": "^8.1.5",
+    "jest": "^27.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smurphy7326/team-portfolio-generator.git"
+  },
+  "author": "Sean Murphy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smurphy7326/team-portfolio-generator/issues"
+  },
+  "homepage": "https://github.com/smurphy7326/team-portfolio-generator#readme"
+}
