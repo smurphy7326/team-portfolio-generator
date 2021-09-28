@@ -1,3 +1,4 @@
+// this is the first one to make so this ideally can be the template for the others
 const { test, expect } = require('@jest/globals');
 const Employee = require('../lib/Employee.js');
 
@@ -19,13 +20,12 @@ test("gets an employees id value", () => {
     expect(employee.getId()).toBe(employee.id);
 });
 
-test("get an employees email value", () => {
+test("get an employees email value", () => { // Email value should be shown
     const employee = new Employee('Sean', 24, 'sean@mail.com');
     expect(employee.getEmail()).toBe(employee.email);
 });
 
-test("employee's role value", () => {
+test("employee's role value", () => { // Criteria says that we have to include the get role
     const employee = new Employee('Sean', 24, 'sean@mail.com');
-
     expect(employee.getRole()).toBe('Employee');
 });
