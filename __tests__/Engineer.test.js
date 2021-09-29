@@ -1,39 +1,16 @@
 // name, id, email, get name, get id, get email, get role- engineer, github, gert github, 
 // should be the same thing as employee with a few points added at the end 
 
-const { test, expect } = require('@jest/globals'); // makes the variabels avaiable globally when the tests are run. from the jestjs.io website
-const Engineer = require('../lib/Engineer.js');
+const Engineer = require('../lib/engineer.js');
 
 test('creates a engineer object', () => {
-    const engineer = new engineer('Joe', 17, 'joe@email.com', 'github.com/smurphy7326');
+    const engineer = new Engineer('Steve', '77', 'steve@email.com', "smurphy7326");
 
-    expect(engineer.name).toBe('Joe');
-    expect(engineer.id).toBe(17);
-    expect(engineer.email).toBe('joe@email.com');
-    expect(engineer.github).toBe('github.com/smurphy7326');
-});
+    expect(engineer.name).toEqual('Steve');
+    expect(engineer.id).toEqual('77');
+    expect(engineer.email).toEqual('steve@email.com');
+    expect(engineer.github).toEqual('smurphy7326');
+    expect(engineer.role).toEqual('Engineer')
+})
 
-test("gets a engineers name value", () => {
-    const engineer = new engineer('Joe', 17, 'joe@email.com', 'github.com/smurphy7326');
-    expect(engineer.getName()).toEqual(expect.any(String));
-});
 
-test("gets a managers name value", () => {
-    const engineer = new engineer('Joe', 17, 'joe@email.com', 'github.com/smurphy7326');
-    expect(engineer.getId()).toBe(engineer.id);
-});
-
-test("gets a managers email value", () => {
-    const engineer = new engineer('Joe', 17, 'joe@email.com', 'github.com/smurphy7326');
-    expect(engineer.getEmail()).toBe(engineer.email);
-});
-
-test("gets a managers github", () => {
-    const engineer = new engineer('Joe', 17, 'joe@email.com', 'github.com/smurphy7326');
-    expect(engineer.github()).toBe(engineer.github);
-});
-
-test("engineer's role value", () => {
-    const engineer = new engineer('Joe', 17, 'joe@email.com', 'github.com/smurphy7326');
-    expect(engineer.getRole()).toBe('Engineer');
-});
