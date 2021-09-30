@@ -118,5 +118,93 @@ const promptEngineer = () => {
                 }
             }
         },
+        {
+            type: 'input',
+            name: 'enginner-github',
+            message: "What is the engineer's github profile?",
+            validate: engineerGithub => {
+                if (engineerGithub) {
+                    return true;
+                } else {
+                    console.log("Enter the enginners valid email address");
+                    return false;
+                }
+            }
+        }
     ])
+    .then(engineerData => {
+        const{name, id, email, github} = engineerData;
+        const engineer = new Engineer(name, id, email, github);
+        teamProfile.push(engineer);
+        chooseEngineer(team);
+    })
+    .catch(err => { // this is to help catch the errors that could appear 
+        console.log(err);
+    })
+}
+
+const promptIntern = () =>{
+    return inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'intern-name',
+            message: "what is the name of the team intern?",
+            validate: internName => {
+                if (internName) {
+                    return true;
+                } else {
+                    return "Please enter a name for a intern.";
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'intern-id',
+            message: "What is the team interns ID?",
+            validate: internId => {
+                var pass = !isNaN(internId); // testing against NaN, to return the number to be true
+                if (pass) {
+                    return true;
+                } else {
+                    console.log("Please enter the intern's ID number")
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'intern-email',
+            message: "What is your intern email?",
+            validate: internEmail => {
+                if (internEmail) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid email for the intern');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "What school does the intern go to?",
+            validate: internSchool => {
+                if (internSchool) {
+                    return true;
+                } else {
+                    console.log("Please enter a school for the intern");
+                    return false;
+                }
+            }
+        }
+    .then(employeeData => {
+        const{name, id, email, school} = employeeData;
+        const intern = new Intern(name, id, email, school);
+        teamProfile.push(intern);
+        chooseIntern(team);
+    })
+    .catch(err => { // this is to help catch the errors that could appear 
+        console.log(err);
+    })
 }
