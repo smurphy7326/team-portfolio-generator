@@ -63,18 +63,15 @@ const promptManager = () => {
                     return false;
                 }
             }
-        }
+        },
     ])
     .then(employeeData => {
         const {name, id, email, officeNumber} = employeeData; // this takes all of the answers above answered
         const manager = new Manager(name, id, email, officeNumber); // learned this from the last lesson to help with the tests
         teamProfile.push(manager);
-        chooseEmployee(team);
     })
-    .catch(err => { // this is to help catch the errors that could appear 
-        console.log(err);
-    })
-}
+    .then(addEmployee);
+};
 
 const promptEngineer = () => {
     return inquirer
@@ -208,3 +205,25 @@ const promptIntern = () =>{
         console.log(err);
     })
 }
+
+const moreEmployee = function() {
+    inquirer
+    .prompt({
+        type: 'list',
+        name: 'moreEmployee',
+        message: "Would you like to add another Engineer or Intern?",
+        choices: ['Enginner', 'Intern', 'My team is complete'],
+    })
+    .then(result => {
+        const{moreEmployee} = result;
+        if(moreEmployee === 'Engineer'){
+            return promptEngineer();
+        }
+        if(moreEmployee === 'Intern'){
+            return promptIntern();
+        }
+        if(moreEmployee === "My team is complete"){
+            return htmlTemplate();
+        }
+    })
+};
