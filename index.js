@@ -1,5 +1,4 @@
 const inquirer = require('inquirer');
-const Employee = require('./Employee.js');
 const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -73,7 +72,33 @@ const promptManager = () => {
     .then(addEmployee);
 };
 
-const promptEngineer = () => {
+// Reading the requirements again saying that if you want to add more people to the team
+// Question Prompts will be added to see if you want the engineers and interns and what you want after each person is added
+
+function choiceEmployee(teamProfile){
+    return inquirer
+    .prompt(
+        {
+            type:'list',
+            name: 'employeeType',
+            message: "Would you like to add more team memebers?",
+            choices: ['Assign an Engineer', 'Assign an Intern', 'Assemble the Team!']
+        }
+
+.then(function(data) {
+    if(data.employeeType === 'Add an Engineer') {
+        promptEngineer(team);
+    } else if (data.employeeType === 'Assign an Intern') {
+        promptIntern(team);
+    } else {
+        createNewPage(team);
+    }
+})
+    .catch(err => {
+        console.log(err);
+    })
+}
+function promptEngineer () {
     return inquirer
     .prompt([
         {
@@ -140,7 +165,7 @@ const promptEngineer = () => {
     })
 }
 
-const promptIntern = () =>{
+function promptIntern () {
     return inquirer
     .prompt([
         {
@@ -206,24 +231,8 @@ const promptIntern = () =>{
     })
 }
 
-const moreEmployee = function() {
-    inquirer
-    .prompt({
-        type: 'list',
-        name: 'moreEmployee',
-        message: "Would you like to add another Engineer or Intern?",
-        choices: ['Enginner', 'Intern', 'My team is complete'],
-    })
-    .then(result => {
-        const{moreEmployee} = result;
-        if(moreEmployee === 'Engineer'){
-            return promptEngineer();
-        }
-        if(moreEmployee === 'Intern'){
-            return promptIntern();
-        }
-        if(moreEmployee === "My team is complete"){
-            return htmlTemplate();
-        }
-    })
-};
+// To start all the questions 
+const init = () => promptManager()
+
+// Initialize the program, like in the last lesson
+init();
