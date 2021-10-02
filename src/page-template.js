@@ -68,8 +68,8 @@ const generateIntern = internSection => {
 
 // generate the HTML Page 
 module.exports = teamProfile => {
-    const manager = teamProfile[0];
-    const engineerSection = teamProfile.filter(employee => employee.getRole() === 'Enginner');
+    const manager = teamProfile[team];
+    const engineerSection = teamProfile.filter(employee => employee.getRole() === 'Engineer');
     const internSection = teamProfile.filter(employee => employee.getRole() === 'Intern');
 
     return `
@@ -106,16 +106,3 @@ module.exports = teamProfile => {
     </html>
     `;
 };
-
-    return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/index/html', html, err => {
-            if (err) {
-                reject(err);
-                return;
-            }
-            resolve({
-                ok: true,
-                message: console.log('File is created!!')
-            });
-        });
-    });

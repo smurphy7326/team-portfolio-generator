@@ -1,7 +1,7 @@
 {
   "name": "team-portfolio-generator",
   "version": "1.0.0",
-  "description": "A team portfoloi generator that will pop up on a webpage",
+  "description": "A team portfolio generator that will pop up on a webpage",
   "main": "index.js",
   "directories": {
     "lib": "lib"

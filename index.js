@@ -1,8 +1,8 @@
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager.js');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
-const createNewPage = require('./lib/htmlPageTemplate'); // this was helpful last lesson to be able to atke from to help
+const Engineer = require('./lib/Engineer.js');
+const Intern = require('./lib/Intern.js');
+const createNewPage = require('./src/page-Template.js'); // this was helpful last lesson to be able to take from to help
 const fs = require('fs');
 
 // this is part of the team array 
@@ -13,7 +13,7 @@ const promptManager = () => {
     .prompt([
         {
             type: 'input',
-            name: 'manager-name',
+            name: 'managerName',
             message: "what is the name of the team manager?",
             validate: managerName => {
                 if (managerName) {
@@ -28,12 +28,11 @@ const promptManager = () => {
             name: 'id',
             message: "What is the team managers ID?",
             validate: managerId => {
-                var pass = !isNaN(managerId); // testing against NaN, to return the number to be true
-                if (pass) {
+                const pass = !isNaN(managerId);
+                if (managerId && pass) {
                     return true;
                 } else {
-                    console.log("Please enter the managers ID number")
-                    return false;
+                    return "Please enter the managers ID number";
                 }
             }
         },
@@ -45,8 +44,7 @@ const promptManager = () => {
                 if (managerEmail) {
                     return true;
                 } else {
-                    console.log('Please enter a valid email for the manager');
-                    return false;
+                    return 'Please enter a valid email for the manager';
                 }
             }
         },
@@ -55,12 +53,11 @@ const promptManager = () => {
             name: 'officeNumber',
             message: "What is your managers office number?",
             validate: managersOfficeNumber => {
-                var pass = !isNaN(managersOfficeNumber);
-                if (pass){
+                const pass = !isNaN(managersOfficeNumber)
+                if (managersOfficeNumber && pass){
                     return true;
                 } else {
-                    console.log('Please enter your team managers office number');
-                    return false;
+                    return 'Please enter your team managers office number';
                 }
             }
         },
@@ -88,14 +85,14 @@ const choiceEmployee = () => {
 
 .then(function(data) {
     if(data.employeeType === 'Add an Engineer') {
-        promptEngineer(team);
-    } else if (data.employeeType === 'Assign an Intern') {
-        promptIntern(team);
+        promptEngineer(teamProfile);
+    } else if (data.employeeType === 'Add an Intern') {
+        promptIntern(teamProfile);
     } else {
-        createNewPage(team);
-    }
+        createNewPage();
     };
-});
+  });
+};
 
 
 const promptEngineer = () => {
@@ -104,26 +101,25 @@ const promptEngineer = () => {
         {
             type: 'input',
             name: 'engineer-name',
-            message: "what is the name of the team engineer?",
+            message: "What is the name of the team engineer?",
             validate: engineerName => {
                 if (engineerName) {
                     return true;
                 } else {
-                    return "Please enter a name for a engineer.";
+                    return "Please enter a name for an Engineer.";
                 }
             }
         },
         {
             type: 'input',
             name: 'engineer-id',
-            message: "What is the team enginner's ID?",
+            message: "What is the team Engineer's ID?",
             validate: engineerId => {
-                var pass = !isNaN(engineerId); // testing against NaN, to return the number to be true
-                if (pass) {
+                const pass = !isNaN(engineerId);
+                if (engineerId && pass) {
                     return true;
                 } else {
-                    console.log("Please enter the engineers ID number")
-                    return false;
+                    return "Please enter the engineer's ID number";
                 }
             }
         },
@@ -135,21 +131,19 @@ const promptEngineer = () => {
                 if (engineerEmail) {
                     return true;
                 } else {
-                    console.log('Please enter a valid email for the engineer');
-                    return false;
+                    return 'Please enter a valid email for the engineer';
                 }
             }
         },
         {
             type: 'input',
-            name: 'enginner-github',
-            message: "What is the engineer's github profile?",
+            name: 'engineer-github',
+            message: "What is the Engineer's github profile?",
             validate: engineerGithub => {
                 if (engineerGithub) {
                     return true;
                 } else {
-                    console.log("Enter the enginners valid email address");
-                    return false;
+                    return "Enter the Engineers valid email address";
                 }
             }
         }
@@ -158,11 +152,7 @@ const promptEngineer = () => {
         const{name, id, email, github} = engineerData;
         const engineer = new Engineer(name, id, email, github);
         teamProfile.push(engineer);
-        chooseEngineer(team);
         choiceEmployee();
-    })
-    .catch(err => { // this is to help catch the errors that could appear 
-        console.log(err);
     })
 };
 
@@ -177,7 +167,7 @@ const promptIntern = () => {
                 if (internName) {
                     return true;
                 } else {
-                    return "Please enter a name for a intern.";
+                    return "Please enter a name for an intern.";
                 }
             }
         },
@@ -186,12 +176,11 @@ const promptIntern = () => {
             name: 'intern-id',
             message: "What is the team interns ID?",
             validate: internId => {
-                var pass = !isNaN(internId); // testing against NaN, to return the number to be true
-                if (pass) {
+                const pass = !isNaN(internId)
+                if (internId && pass) {
                     return true;
                 } else {
-                    console.log("Please enter the intern's ID number")
-                    return false;
+                    return "Please enter the intern's ID number";
                 }
             }
         },
@@ -203,8 +192,7 @@ const promptIntern = () => {
                 if (internEmail) {
                     return true;
                 } else {
-                    console.log('Please enter a valid email for the intern');
-                    return false;
+                    return 'Please enter a valid email for the intern';
                 }
             }
         },
@@ -216,26 +204,19 @@ const promptIntern = () => {
                 if (internSchool) {
                     return true;
                 } else {
-                    console.log("Please enter a school for the intern");
-                    return false;
+                    return "Please enter a school for the intern";
                 }
             }
         }
+    ])
     .then(employeeData => {
         const{name, id, email, school} = employeeData;
         const intern = new Intern(name, id, email, school);
         teamProfile.push(intern);
-        chooseIntern(team);
         choiceEmployee();
     })
-    .catch(err => { // this is to help catch the errors that could appear 
-        console.log(err);
-    })
-}
-}
+};
 
-// To start all the questions 
-const init = () => promptManager()
+// to start asking the questions 
+promptManager();
 
-// Initialize the program, like in the last lesson
-init();
