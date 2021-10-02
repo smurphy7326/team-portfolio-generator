@@ -97,7 +97,8 @@ function choiceEmployee(teamProfile){
     .catch(err => {
         console.log(err);
     })
-}
+,
+
 function promptEngineer () {
     return inquirer
     .prompt([
@@ -163,7 +164,7 @@ function promptEngineer () {
     .catch(err => { // this is to help catch the errors that could appear 
         console.log(err);
     })
-}
+};
 
 function promptIntern () {
     return inquirer
@@ -229,6 +230,7 @@ function promptIntern () {
     .catch(err => { // this is to help catch the errors that could appear 
         console.log(err);
     })
+}
 }
 
 // To start all the questions 

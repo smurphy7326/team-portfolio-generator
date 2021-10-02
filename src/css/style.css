@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(213, 240, 243);
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    text-align: center;
+    font-size: medium;
+}
+
+.jumbotron {
+    color: black;
+    background-color: grey;
+    padding: 15px;
+    height: 50px;
+}
+
+h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: xx-large;
+}
+
+h3 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h4 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h5 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.Manager-color {
+    background-color: mediumvioletred;
+}
+
