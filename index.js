@@ -14,7 +14,7 @@ const promptManager = () => {
         {
             type: 'input',
             name: 'managerName',
-            message: "what is the name of the team manager?",
+            message: "What is the name of the team manager?",
             validate: managerName => {
                 if (managerName) {
                     return true;
@@ -66,8 +66,8 @@ const promptManager = () => {
     .then(({ name, id, email, officeNumber }) => {
         const manager = new Manager(name, id, email, officeNumber); // learned this from the last lesson to help with the tests
         teamProfile.push(manager);
-    })
-    .then(choiceEmployee);
+        choiceEmployee();
+    });
 };
 
 // Reading the requirements again saying that if you want to add more people to the team
@@ -83,13 +83,13 @@ const choiceEmployee = () => {
             choices: ['Add an Engineer', 'Add an Intern', 'Assemble the Team!']
         })
 
-.then(function(data) {
-    if(data.employeeType === 'Add an Engineer') {
+.then(({employeeType}) => {
+    if(employeeType === 'Add an Engineer') {
         promptEngineer(teamProfile);
-    } else if (data.employeeType === 'Add an Intern') {
+    } else if (employeeType === 'Add an Intern') {
         promptIntern(teamProfile);
     } else {
-        createNewPage(teamProfile);
+        writeFile(createNewPage(teamProfile));
     };
   });
 };
