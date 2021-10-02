@@ -3,6 +3,7 @@ const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const createNewPage = require('./lib/htmlPageTemplate'); // this was helpful last lesson to be able to atke from to help
+const fs = require('fs');
 
 // this is part of the team array 
 const teamProfile = []; // this will be part of employees, engineer, intern, manager
@@ -68,22 +69,22 @@ const promptManager = () => {
         const {name, id, email, officeNumber} = employeeData; // this takes all of the answers above answered
         const manager = new Manager(name, id, email, officeNumber); // learned this from the last lesson to help with the tests
         teamProfile.push(manager);
-    })
-    .then(addEmployee);
+        choiceEmployee();
+    });
 };
 
 // Reading the requirements again saying that if you want to add more people to the team
 // Question Prompts will be added to see if you want the engineers and interns and what you want after each person is added
 
-function choiceEmployee(teamProfile){
+const choiceEmployee = () => {
     return inquirer
     .prompt(
         {
             type:'list',
             name: 'employeeType',
-            message: "Would you like to add more team memebers?",
-            choices: ['Assign an Engineer', 'Assign an Intern', 'Assemble the Team!']
-        }
+            message: "Would you like to add more team members?",
+            choices: ['Add an Engineer', 'Add an Intern', 'Assemble the Team!']
+        })
 
 .then(function(data) {
     if(data.employeeType === 'Add an Engineer') {
@@ -93,13 +94,11 @@ function choiceEmployee(teamProfile){
     } else {
         createNewPage(team);
     }
-})
-    .catch(err => {
-        console.log(err);
-    })
-,
+    };
+});
 
-function promptEngineer () {
+
+const promptEngineer = () => {
     return inquirer
     .prompt([
         {
@@ -160,13 +159,14 @@ function promptEngineer () {
         const engineer = new Engineer(name, id, email, github);
         teamProfile.push(engineer);
         chooseEngineer(team);
+        choiceEmployee();
     })
     .catch(err => { // this is to help catch the errors that could appear 
         console.log(err);
     })
 };
 
-function promptIntern () {
+const promptIntern = () => {
     return inquirer
     .prompt([
         {
@@ -226,6 +226,7 @@ function promptIntern () {
         const intern = new Intern(name, id, email, school);
         teamProfile.push(intern);
         chooseIntern(team);
+        choiceEmployee();
     })
     .catch(err => { // this is to help catch the errors that could appear 
         console.log(err);
