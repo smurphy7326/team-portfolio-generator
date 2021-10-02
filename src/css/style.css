@@ -6,31 +6,15 @@ body {
     font-size: medium;
 }
 
-.jumbotron {
+.header {
     color: black;
     background-color: grey;
-    padding: 15px;
-    height: 50px;
-}
-
-h1 {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: xx-large;
-}
-
-h3 {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-h4 {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-h5 {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 15px, 15px, 15px, 15px;
+    height: 75px;
+    text-align: center;
 }
 
 .Manager-color {
-    background-color: mediumvioletred;
+    background-color:rgb(4, 0, 255)
 }
 

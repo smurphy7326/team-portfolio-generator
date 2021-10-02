@@ -5,7 +5,7 @@
 const generateManager = manager => {
     return `
     <div class="card text-dark ${manager.getRole()}-border">
-    <div class="card-header ${manager.getRole()}-color text-white">
+            <div class="card-header ${manager.getRole()}-color text-white">
         <h2 class="card-title">${manager.getName()}</h2>
         <h3 class="card-text"><i class="fas fa-user-tie"></i> ${manager.getRole()}</h3>
             </div>
@@ -16,19 +16,18 @@ const generateManager = manager => {
                             <li class="list-group-item"> Office Number: ${manager.getOfficeNumber()}</li>
                         </ul>
                     </div>
-                    </div>
-                `;
-            };
+                </div>
+            `;
+        };
 // There is nothing more needed from this prompt because it is always going to be asked first, this will always be exported 
 
 // Engineer Section 
 
 const generateEngineer = engineerSection => {
-    const engineerCards = engineerSection.forEach((engineer)=> {
+    const engineerCards = engineerSection.map((engineer)=> {
     return `
-    <div class='card-columns">
-        <div class="card card-header">
-            <div class="card-header ${this.getRole()}-color text-white">
+    <div class="card text-dark ${enginner.getRole()}-border">
+            <div class="card-header ${engineer.getRole()}-color text-white">
                 <h2>${engineer.getName()}</h2>
                 <h3 class="card-text"><i class="fab fa-black-tie"></i> Engineer </h3>
             </div>
@@ -42,16 +41,16 @@ const generateEngineer = engineerSection => {
                 </div>
             `;
         });
+        return `${engineerCards.join('')}`;
     };
 // you have to export this because i have yet to do it from another place
 // Intern Section
 
 const generateIntern = internSection => {
-    const internCard = internSection.forEach((intern) => {
+    const internCards = internSection.map((intern) => {
     return `
-    <div class='card-columns">
-        <div class="card card-header">
-            <div class="card-header ${this.getRole()}-color text-white">
+    <div class="card text-dark ${intern.getRole()}-border">
+            <div class="card-header ${intern.getRole()}-color text-white">
                 <h2>${intern.getName()}</h2>
                 <h3 class="card-text"><i class="fab fa-black-tie"></i> Manager </h3>
             </div>
@@ -65,6 +64,7 @@ const generateIntern = internSection => {
                 </div>
             `;
         });
+        return `${internCards.join('')}`;
     };
 
 // generate the HTML Page 
@@ -86,7 +86,7 @@ module.exports = teamProfile => {
         <title>Team Generator</title>
     </head>
     <body>
-        <header class="bg-success text-center align-center text-white">
+        <header>
             <h1 class="test-center">The Team</h1>
         </div>
     </div>
