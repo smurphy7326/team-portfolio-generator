@@ -41,33 +41,33 @@ const promptManager = () => {
             name: 'email',
             message: "What is your managers email?",
             validate: managerEmail => {
-                if (managerEmail) {
+                var pass = managerEmail.includes('@');
+                if (pass) {
                     return true;
                 } else {
-                    return 'Please enter a valid email for the manager';
+                    return 'Please enter a valid email for the Manager!';
                 }
             }
         },
         {
             type: 'input',
             name: 'officeNumber',
-            message: "What is your managers office number?",
-            validate: managersOfficeNumber => {
-                const pass = !isNaN(managersOfficeNumber)
-                if (managersOfficeNumber && pass){
+            message: "What is your Manager's office number?",
+            validate: officeNumber => {
+                const pass = !isNaN(officeNumber)
+                if (officeNumber && pass){
                     return true;
                 } else {
                     return 'Please enter your team managers office number';
                 }
             }
-        },
+        }
     ])
-    .then(employeeData => {
-        const {name, id, email, officeNumber} = employeeData; // this takes all of the answers above answered
+    .then(({ name, id, email, officeNumber }) => {
         const manager = new Manager(name, id, email, officeNumber); // learned this from the last lesson to help with the tests
         teamProfile.push(manager);
-        choiceEmployee();
-    });
+    })
+    .then(choiceEmployee);
 };
 
 // Reading the requirements again saying that if you want to add more people to the team
@@ -89,13 +89,13 @@ const choiceEmployee = () => {
     } else if (data.employeeType === 'Add an Intern') {
         promptIntern(teamProfile);
     } else {
-        createNewPage();
+        createNewPage(teamProfile);
     };
   });
 };
 
 
-const promptEngineer = () => {
+const promptEngineer = teamProfile => {
     return inquirer
     .prompt([
         {
@@ -143,20 +143,19 @@ const promptEngineer = () => {
                 if (engineerGithub) {
                     return true;
                 } else {
-                    return "Enter the Engineers valid email address";
+                    return "Enter the Engineers valid Github username";
                 }
             }
         }
     ])
-    .then(engineerData => {
-        const{name, id, email, github} = engineerData;
-        const engineer = new Engineer(name, id, email, github);
-        teamProfile.push(engineer);
+    .then(({name, id, email, github}) => {
+        const employee = new Engineer(name, id, email, github);
+        teamProfile.push(employee);
         choiceEmployee();
     })
 };
 
-const promptIntern = () => {
+const promptIntern = teamProfile => {
     return inquirer
     .prompt([
         {
@@ -209,14 +208,28 @@ const promptIntern = () => {
             }
         }
     ])
-    .then(employeeData => {
-        const{name, id, email, school} = employeeData;
-        const intern = new Intern(name, id, email, school);
-        teamProfile.push(intern);
+    .then(({name, id, email, school}) => {
+        const employee = new Intern(name, id, email, school);
+        teamProfile.push(employee);
         choiceEmployee();
     })
 };
 
+// This is like the Generate Markdown from last weeks assignment
+const writeFile = newFile => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('./dist/index.html', newFile, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve({
+                ok: true,
+                message: console.log('File has been created!!')
+            });
+        });
+    });
+};
+
 // to start asking the questions 
 promptManager();
-

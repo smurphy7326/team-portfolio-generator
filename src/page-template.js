@@ -1,6 +1,7 @@
 // This is how the answers should be populated 
 // I wrote this into index out of habit but that is where it should be populated, since it is in dist folder
 // how the HTML page should run
+
 const generateManager = manager => {
     return `
     <div class='card-columns">
@@ -11,7 +12,7 @@ const generateManager = manager => {
             </div>
             <div class="card-body bg-white"> <!-- card bootstrap website -->
                         <ul class="list-group list-group flush"> <!-- remove some borders and rounded corners to render list group items edge-to-edge in a parent container taken from bootstraps website -->
-                            <li class="list-group-item">ID: ${manager.getID()}</li>
+                            <li class="list-group-item">ID: ${manager.getId()}</li>
                             <li class="list-group-item">Email: <a href = "mailto: ${manager.getEmail()}">${manager.getEmail()}</a></li>
                             <li class="list-group-item"> Office Number: ${manager.getOfficeNumber()}</li>
                         </ul>
@@ -68,7 +69,7 @@ const generateIntern = internSection => {
 
 // generate the HTML Page 
 module.exports = teamProfile => {
-    const manager = teamProfile[team];
+    const manager = teamProfile[0];
     const engineerSection = teamProfile.filter(employee => employee.getRole() === 'Engineer');
     const internSection = teamProfile.filter(employee => employee.getRole() === 'Intern');
 
