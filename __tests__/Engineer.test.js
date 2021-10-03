@@ -10,7 +10,4 @@ test('creates a engineer object', () => {
     expect(engineer.id).toEqual('77');
     expect(engineer.email).toEqual('steve@email.com');
     expect(engineer.github).toEqual('smurphy7326');
-    expect(engineer.role).toEqual('Engineer')
-})
-
-
+});

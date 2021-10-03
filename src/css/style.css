@@ -6,15 +6,12 @@ body {
     font-size: medium;
 }
 
-.header {
-    color: black;
-    background-color: grey;
-    padding: 15px, 15px, 15px, 15px;
+header {
+    color: white;
+    background-color: rgb(226, 11, 11);
+    margin-bottom: 25px;
     height: 75px;
     text-align: center;
 }
 
-.Manager-color {
-    background-color:rgb(4, 0, 255)
-}
-
+/* The style in the header is here when it could be done in page template */

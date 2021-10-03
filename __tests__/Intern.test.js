@@ -10,5 +10,4 @@ test('creates a intern object', () => {
     expect(intern.id).toEqual('5');
     expect(intern.email).toEqual('brian@email.com');
     expect(intern.school).toEqual('UCONN');
-    expect(intern.role).toEqual('Intern')
 })
