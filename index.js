@@ -15,7 +15,7 @@ const promptManager = () => {
         {
             type: 'input',
             name: 'managerName',
-            message: "What is the name of the team manager?",
+            message: "What is the name of the Team Manager?",
             validate: managerName => {
                 if (managerName) {
                     return true;
@@ -27,7 +27,7 @@ const promptManager = () => {
         {
             type: 'input',
             name: 'managerId',
-            message: "What is the team managers ID?",
+            message: "What is the Team Managers ID?",
             validate: managerId => {
                 const pass = !isNaN(managerId); // This is to make sure that the ID only has number in the ID or it will not accept the answer
                 if (managerId && pass) { // When it works it will allow only numbers
@@ -40,7 +40,7 @@ const promptManager = () => {
         {
             type: 'input',
             name: 'managerEmail',
-            message: "What is your managers email?",
+            message: "What is your Managers email?",
             validate: managerEmail => {
                 var pass = managerEmail.includes('@'); // This is to make sure that the email has an @ in the answer or it will not accept the answer
                 if (pass) {
@@ -59,7 +59,7 @@ const promptManager = () => {
                 if (officeNumber && pass){
                     return true;
                 } else {
-                    return 'Please enter your team managers office number';
+                    return 'Please enter your Team Managers office number';
                 }
             }
         }
@@ -103,7 +103,7 @@ const promptEngineer = teamProfile => {
         {
             type: 'input',
             name: 'engineerName',
-            message: "What is the name of the team engineer?",
+            message: "What is the name of the team Engineer?",
             validate: engineerName => {
                 if (engineerName) { // Any name  should work here
                     return true;
@@ -121,20 +121,20 @@ const promptEngineer = teamProfile => {
                 if (engineerId && pass) {
                     return true;
                 } else {
-                    return "Please enter the engineer's ID number";
+                    return "Please enter the Engineer's ID number";
                 }
             }
         },
         {
             type: 'input',
             name: 'engineerEmail',
-            message: "What is your engineer's email?",
+            message: "What is your Engineer's email?",
             validate: engineerEmail => {
                 var pass = engineerEmail.includes('@'); // This is to make sure that the email has an @ in the answer or it will not accept the answer
                 if (pass) {
                     return true;
                 } else {
-                    return 'Please enter a valid email for the Manager!';
+                    return 'Please enter a valid email for the Engineer!';
                 }
             }
         },
@@ -146,7 +146,7 @@ const promptEngineer = teamProfile => {
                 if (engineerGithub) {
                     return true;
                 } else {
-                    return "Enter the Engineers valid Github username";
+                    return "Enter the Engineer's valid Github username";
                 }
             }
         }
@@ -164,12 +164,12 @@ const promptIntern = teamProfile => {
         {
             type: 'input',
             name: 'internName',
-            message: "What is the name of the team intern?",
+            message: "What is the name of the team Intern?",
             validate: internName => {
                 if (internName) {
                     return true;
                 } else {
-                    return "Please enter a name for an intern.";
+                    return "Please enter a name for an Intern.";
                 }
             }
         },
@@ -182,14 +182,14 @@ const promptIntern = teamProfile => {
                 if (internId && pass) {
                     return true;
                 } else {
-                    return "Please enter the intern's ID number";
+                    return "Please enter the Intern's ID number";
                 }
             }
         },
         {
             type: 'input',
             name: 'internEmail',
-            message: "What is your intern email?",
+            message: "What is your Intern email?",
             validate: internEmail => {
                 var pass = internEmail.includes('@'); // This is to make sure that the email has an @ in the answer or it will not accept the answer
                 if (pass) {
@@ -202,12 +202,12 @@ const promptIntern = teamProfile => {
         {
             type: 'input',
             name: 'internSchool',
-            message: "What school does the intern go to?",
+            message: "What school does the Intern go to?",
             validate: internSchool => { // Any prompt should work for this one
                 if (internSchool) {
                     return true;
                 } else {
-                    return "Please enter a school for the intern";
+                    return "Please enter a school for the Intern";
                 }
             }
         }
