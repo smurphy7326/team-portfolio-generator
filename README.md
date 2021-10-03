@@ -54,7 +54,7 @@ MIT License
 ## Contact 
 
 - [Github](https://github.com/smurphy7326)
-- [Email](smurphy7326@gmail.com)
+- [Email](mailto:smurphy7326@gmail.com)
 
 ## Credits
 
